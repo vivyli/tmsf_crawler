@@ -30,7 +30,7 @@ def parse_first_hand_text(text):
         return []
     t = m.group(0)
     res = []
-    pattern_places = ['主城区签约(\d+)套', '萧山(\d+)套', '余杭(\d+)套', '富阳(\d+)套', '桐庐(\d+)套', '建德(\d+)套', '淳安(\d+)套', '临安(\d+)套']
+    pattern_places = ['主城区签约(\d+)套', '萧山(\d+)套', '余杭(\d+)套', '富阳(\d+)套', '桐庐(\d+)套', '建德(\d+)套', '淳安(\d+)套', '临安(\d+)套', '大江东(\d+)套', '二手房共签约(\d+)套']
     # main city
     for p in pattern_places:
         pat = p.decode('utf8')
@@ -56,9 +56,11 @@ def get_write_string(sold_list, dt):
     return text
 
 if __name__ == "__main__":
-    cur_day = date(2013, 2, 16)
+    cur_day = date(2016, 8, 3) #date(2013, 2, 16)
     end_day = date.today()
     with open('tmsf.csv', 'a') as f:
+    	title = '时间,主城区,萧山,余杭,富阳，桐庐,建德,淳安,临安,大江东,二手房'
+	f.write(title +'\n')
         while cur_day != end_day:
             page = fetch_page_date(cur_day)
             #retrieve data
